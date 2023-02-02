@@ -2,7 +2,7 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
-from googlemap import GOOGLEMAP
+from hungryworker import HUNGRYWORKER
 import requests
 
 
@@ -30,7 +30,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     keyword = event.message.text.lower()
-    gmap = GOOGLEMAP()
+    gmap = HUNGRYWORKER()
     if keyword.startswith("找店家") and "/" in keyword:
         targets = keyword.split("/")
         location = targets[1]
