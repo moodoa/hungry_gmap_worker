@@ -1,7 +1,7 @@
 import googlemaps
 
 
-class GOOGLEMAP:
+class HUNGRYWORKER:
     def __init__(self):
         self.gmaps = googlemaps.Client(key="YOUR_GOOGLE_MAP_API_KEY")
 
