@@ -30,6 +30,7 @@
 # 關於 openai DALL E api 的設定
 #### 1.進入 [open ai api](https://platform.openai.com/account/api-keys) 後登入 google 帳號並點選中間的 `Create new secret key`。
 #### 2.將生成的 KEY 放進 `painter.py` 中對應位置即可使用。
-#### 3.使用方法：在與 line bot 的對話框中輸入`畫圖/文字描述`，即可生成文字描述的圖片，用英文會比較精準一點。
 ![alt text](https://cdn-images-1.medium.com/max/1000/1*acTnkeZM4hpLIZjYGYQ2ww.png)
+#### 3.使用方法：在與 line bot 的對話框中輸入`畫圖/文字描述`，即可生成文字描述的圖片，用英文會比較精準一點。
+
 
