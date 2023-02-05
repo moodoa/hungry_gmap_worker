@@ -1,8 +1,9 @@
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 from hungryworker import HUNGRYWORKER
+from painter import PAINTER
 import requests
 
 
@@ -16,7 +17,6 @@ handler = WebhookHandler('YOUR_CHANNEL_SECRET')
 def callback():
     signature = request.headers["X-Line-Signature"]
     body = request.get_data(as_text=True)
-    # app.logger.info("Request body: " + body)
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
@@ -30,8 +30,8 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     keyword = event.message.text.lower()
-    gmap = HUNGRYWORKER()
     if keyword.startswith("找店家") and "/" in keyword:
+        gmap = HUNGRYWORKER()
         targets = keyword.split("/")
         location = targets[1]
         category = targets[2]
@@ -39,6 +39,16 @@ def handle_message(event):
         output = gmap.get_shop(location, category, int(radius))
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=output))
 
+    elif keyword.startswith("畫圖") and "/" in keyword:
+        painter = PAINTER()
+        text = keyword.split("/")[1]
+        url = painter.get_drawing_url(text)
+        line_bot_api.reply_message(
+            event.reply_token,
+            ImageSendMessage(original_content_url=url, preview_image_url=url),
+        )
+
 
 if __name__ == "__main__":
     app.run()
+
