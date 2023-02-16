@@ -33,4 +33,7 @@
 ![alt text](https://cdn-images-1.medium.com/max/1000/1*acTnkeZM4hpLIZjYGYQ2ww.png)
 #### 3.使用方法：在與 line bot 的對話框中輸入`畫圖/文字描述`，即可生成文字描述的圖片，用英文會比較精準一點。
 
-
+# 關於 openai chatGPT 的設定
+#### 1.使用同樣的 openai key。
+![alt text](https://cdn-images-1.medium.com/max/1000/1*i7rgzeIK-Qhf7fTU6NU8kw.png)
+#### 2.使用方法：在與 line bot 的對話框中輸入`改履歷/中文履歷段落`，即可轉換成英文履歷。(為了效率無法一次改太多字)
