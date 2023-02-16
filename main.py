@@ -47,6 +47,18 @@ def handle_message(event):
             event.reply_token,
             ImageSendMessage(original_content_url=url, preview_image_url=url),
         )
+    
+    elif keyword.startswith("改履歷") and "/" in keyword:
+        text = keyword.split("/")[1]
+        bot = PAINTER()
+        first_version = bot.get_response(f"能幫我把以下的履歷改成英文的嗎?\n{text}")
+        final_version = bot.get_response(
+            f"critique the experience on a resume\n{first_version},and rewrite the above resume bullet points using the suggestions you provided"
+        )
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(text=final_version)
+        )
+
 
 
 if __name__ == "__main__":
