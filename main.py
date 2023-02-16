@@ -58,6 +58,12 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=final_version)
         )
+    
+    else:
+        text = keyword
+        bot = PAINTER()
+        response = str(bot.get_response(text))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=response))
 
 
 
