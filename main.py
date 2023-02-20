@@ -4,6 +4,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 from hungryworker import HUNGRYWORKER
 from painter import PAINTER
+from job_hunting import JOB
 import requests
 
 
@@ -58,6 +59,15 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=final_version)
         )
+    
+    elif keyword.startswith("找工作") and "/" in keyword:
+        job_keyword = keyword.split("/")[1]
+        location = keyword.split("/")[2]
+        cnt = int(keyword.split("/")[3])
+        bot = JOB(job_keyword, location)
+        jobs = bot.collect_jobs(cnt)
+        output = bot.make_output(jobs)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=output))
     
     else:
         text = keyword
