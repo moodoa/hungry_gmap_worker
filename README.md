@@ -1,5 +1,5 @@
 # hungry_gmap_worker
-上班肚子餓了嗎？想規劃旅遊景點嗎？用這支程式幫你找到附近的好東西吧！
+上班肚子餓了嗎？想找新工作嗎？用這支程式幫你找到附近的好東西吧！
 
 ![alt text](https://cdn-images-1.medium.com/max/1000/1*NCCUzKGIzM_jbqCTaKuI_g.png)
 #### 部屬 app 到 deta 上，並連動 LINE bot。
@@ -37,3 +37,8 @@
 #### 1.使用同樣的 openai key。
 ![alt text](https://cdn-images-1.medium.com/max/1000/1*i7rgzeIK-Qhf7fTU6NU8kw.png)
 #### 2.使用方法：在與 line bot 的對話框中輸入`改履歷/中文履歷段落`，即可轉換成英文履歷。(為了效率無法一次改太多字)
+
+# 關於 job_hunting 的設定
+#### 1.爬取 104 人力銀行上的工作。
+![alt text](https://cdn-images-1.medium.com/max/1000/1*yXmybBSxRu0YbeEK87ElSg.png)
+#### 2.使用方法：在與 line bot 的對話框中輸入`找工作/工作主題/工作地點/回傳筆數`，即可找到符合條件的工作連結。
