@@ -40,5 +40,5 @@
 
 # 關於 job_hunting 的設定
 #### 1.爬取 104 人力銀行上的工作。
-![alt text](https://cdn-images-1.medium.com/max/1000/1*yXmybBSxRu0YbeEK87ElSg.png)
+![alt text](https://cdn-images-1.medium.com/max/1000/1*o6uLLBdj9squzRAGy6pE1w.png)
 #### 2.使用方法：在與 line bot 的對話框中輸入`找工作/工作主題/工作地點/回傳筆數`，即可找到符合條件的工作連結。
