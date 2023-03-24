@@ -3,7 +3,7 @@ import googlemaps
 
 class HUNGRYWORKER:
     def __init__(self):
-        self.gmaps = googlemaps.Client(key="YOUR_GOOGLE_MAP_API_KEY")
+        self.gmaps = googlemaps.Client(key="YOUR_GOOGLE_MAP_KEY")
 
     def get_shop(self, user_location, category, user_radius):
         output = ""
@@ -13,12 +13,16 @@ class HUNGRYWORKER:
         shops = self.gmaps.places_nearby(
             keyword=category, location=loc, radius=user_radius, language="zh-TW"
         )
-        for shop in sorted(shops["results"], key=lambda x: x["rating"], reverse=True):
+        for shop in sorted(shops["results"], key=lambda x: x["rating"], reverse=True)[:8]:
+            shop_detail_info = self.gmaps.place(
+                place_id=shop["place_id"], language="zh-TW"
+            )["result"]
             output += "🥢" + (shop["name"]) + "\n"
             output += self._get_shop_status(shop)
             output += f'評分：{(shop["rating"])}\n'
-            output += f"電話：{self._get_shop_number(shop)}\n"
-            output += f"地址：{shop['vicinity']}\n\n"
+            output += f"電話：{self._get_shop_number(shop_detail_info)}\n"
+            output += f"地址：{shop['vicinity']}\n"
+            output += f"連結：{self._get_link(shop_detail_info)}\n\n"
         return output
 
     def _get_shop_status(self, shop):
@@ -31,12 +35,18 @@ class HUNGRYWORKER:
             status = "待確認\n"
         return status
 
-    def _get_shop_number(self, shop):
+    def _get_shop_number(self, shop_detail_info):
         number = "待確認"
         try:
-            number = self.gmaps.place(place_id=shop["place_id"], language="zh-TW")[
-                "result"
-            ]["formatted_phone_number"]
+            number = shop_detail_info["formatted_phone_number"]
         except:
             pass
         return number
+
+    def _get_link(self, shop_detail_info):
+        link = ""
+        try:
+            link = shop_detail_info["url"]
+        except:
+            pass
+        return link
